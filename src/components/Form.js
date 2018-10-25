@@ -6,17 +6,17 @@ class Form extends Component {
             {
                 name: "Lowercase characters",
                 characters: "abcdefghijklmnopqrstuvwxyz",
-                selected: false
+                selected: true
             },
             {
                 name: "Uppercase characters",
                 characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                selected: false
+                selected: true
             },
             {
                 name: "Symbols",
                 characters: "!@#$%^&*()_-+=|{}[]].,;:?\\/<>'\"",
-                selected: false
+                selected: true
             },
             {
                 name: "Digits",
@@ -28,7 +28,8 @@ class Form extends Component {
         numberOfPasswords: 9
     }
 
-    renderPasswords = (numberOfPasswords) => {
+    // We can't run any loops in render(), so a separate method should be created
+    renderPasswords = numberOfPasswords => {
         let passwordArray = [];
         for(let i = 1; i <= numberOfPasswords; i++) {
             passwordArray.push(`${ this.generatePassword() }`);
@@ -60,7 +61,8 @@ class Form extends Component {
         let password = "";
         randomNumbersArray.map(value => {
             // Calculating random integer in the range of 0-(charactersList.length-1)
-            let j = Math.round(value * (charactersList.length - 1) / 255);
+            // idea: https://stackoverflow.com/questions/1527803/
+            let j = Math.floor((value * charactersList.length) >> 8);
             password += charactersList[j];
             return false;
         });
