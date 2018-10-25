@@ -1,5 +1,5 @@
 {
-  "name": "pwd-generator",
+  "name": "react-password-generator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
