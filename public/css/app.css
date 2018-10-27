@@ -12,5 +12,6 @@ input {
 }
 
 .container {
-    margin: 0 auto;
+    margin: 1% auto;
+    text-align: center;
 }
