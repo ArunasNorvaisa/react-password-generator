@@ -72,8 +72,8 @@ class Form extends Component {
         const pwdArray = this.renderPasswords(this.state.numberOfPasswords);
         return <div className="container">
             {
-                pwdArray.map(value => {
-                    return <div key = { value } className="password">
+                pwdArray.map((value, index) => {
+                    return <div key = { index } className="password">
                         <input type="text" value={ value } readOnly />
                     </div>
                 })
