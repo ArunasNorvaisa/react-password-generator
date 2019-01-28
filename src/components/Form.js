@@ -6,16 +6,16 @@ class Form extends Component {
             {
                 name: "Lowercase characters",
                 characters: "abcdefghijklmnopqrstuvwxyz",
-                selected: false
+                selected: true
             },
             {
                 name: "Uppercase characters",
                 characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                selected: false
+                selected: true
             },
             {
                 name: "Symbols",
-                characters: "!@#$%^&*()_-+=|{}[]].,;:?\\/<>'\"",
+                characters: "!@#$%^&*()_-+=|{}[]].,;:?\\/\"<>'",
                 selected: false
             },
             {
@@ -33,7 +33,7 @@ class Form extends Component {
         let passwordsArray = [];
         const charactersList = this.generateCharactersList();
         for(let i = 1; i <= numberOfPasswords; i++) {
-            passwordsArray.push(this.generatePassword(charactersList));
+            passwordsArray.push(this.generateSinglePassword(charactersList));
         }
         return passwordsArray;
     }
@@ -51,7 +51,7 @@ class Form extends Component {
     }
 
     // Generating single password
-    generatePassword = charactersList => {
+    generateSinglePassword = charactersList => {
         // Creating Uint8Array-type array
         const randomNumbersArray = new Uint8Array( this.state.passwordLength );
         // Populating the new Uint8Array with random integers in the range of 0-255
@@ -69,15 +69,35 @@ class Form extends Component {
     };
 
     render() {
-        const pwdArray = this.renderPasswords(this.state.numberOfPasswords);
+        const pwdArray = this.renderPasswords( this.state.numberOfPasswords );
         return <div className="container">
-            {
-                pwdArray.map((value, index) => {
-                    return <div key = { index } className="password">
-                        <input type="text" value={ value } readOnly />
-                    </div>
-                })
-            }
+            <div  className="initial_data">
+                {
+                    this.state.options.map( index => {
+                        return <div key = { index.name }>
+                            <input type="text" value={ index.name } readOnly />
+                            <input type="text" value={ index.characters } readOnly />
+                        </div>
+                    })
+                }
+                <div>
+                    <input type="text" value="Password Length" readOnly />
+                    <input type="number" value={ this.state.passwordLength } />
+                </div>
+                <div>
+                    <input type="text" value="Number of Passwords" readOnly />
+                    <input type="number" value={ this.state.numberOfPasswords } />
+                </div>
+            </div>
+            <div className="generated_passwords">
+                {
+                    pwdArray.map((value, index) => {
+                        return <div key = { index } className="password">
+                            <input type="text" value={ value } readOnly />
+                        </div>
+                    })
+                }
+            </div>
         </div>
     }
 }

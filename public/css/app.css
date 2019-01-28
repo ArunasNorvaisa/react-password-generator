@@ -15,3 +15,9 @@ input {
     margin: 1% auto;
     text-align: center;
 }
+
+.generated_passwords {
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
