@@ -68,25 +68,55 @@ class Form extends Component {
         return password;
     };
 
+    handlePasswordLengthChange = event => {
+        this.setState({ passwordLength: event.target.value });
+        if (event.target.value < 2) {
+            this.setState({ passwordLength: 2 });
+        }
+    }
+
+    handleNumberOfPasswordsChange = event => {
+        this.setState({ numberOfPasswords: event.target.value });
+        if (event.target.value < 1) {
+            this.setState({ numberOfPasswords: 1 });
+        }
+    }
+
+    handleCharListChange = index => {
+
+        this.setState(prevState => {
+            let options = [...prevState.options];
+            options[index] = { ...options[index], selected: !options[index].selected };
+
+            return { options: options };
+        });
+    }
+
+
     render() {
         const pwdArray = this.renderPasswords( this.state.numberOfPasswords );
         return <div className="container">
             <div  className="initial_data">
                 {
-                    this.state.options.map( index => {
-                        return <div key = { index.name }>
-                            <input type="text" value={ index.name } readOnly />
-                            <input type="text" value={ index.characters } readOnly />
+                    this.state.options.map( (option, index) => {
+                        return <div key = { option.name }>
+                            <input type="text" value={ option.name } readOnly />
+                            <input
+                                type="checkbox"
+                                checked={ option.selected }
+                                onChange={ event => {this.handleCharListChange(index, event)} }
+                            />
+                            <input type="text" value={ option.characters } readOnly />
                         </div>
                     })
                 }
                 <div>
                     <input type="text" value="Password Length" readOnly />
-                    <input type="number" value={ this.state.passwordLength } />
+                    <input type="number" value={ this.state.passwordLength } onChange={ this.handlePasswordLengthChange } />
                 </div>
                 <div>
                     <input type="text" value="Number of Passwords" readOnly />
-                    <input type="number" value={ this.state.numberOfPasswords } />
+                    <input type="number" value={ this.state.numberOfPasswords } onChange={ this.handleNumberOfPasswordsChange } />
                 </div>
             </div>
             <div className="generated_passwords">
