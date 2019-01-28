@@ -101,12 +101,12 @@ class Form extends Component {
                     this.state.options.map( (option, index) => {
                         return <div key = { option.name }>
                             <input type="text" value={ option.name } readOnly />
+                            <input type="text" value={ option.characters } readOnly />
                             <input
                                 type="checkbox"
                                 checked={ option.selected }
-                                onChange={ event => {this.handleCharListChange(index, event)} }
+                                onChange={ event => { this.handleCharListChange(index, event) } }
                             />
-                            <input type="text" value={ option.characters } readOnly />
                         </div>
                     })
                 }
