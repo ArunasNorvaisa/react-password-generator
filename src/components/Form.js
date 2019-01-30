@@ -16,7 +16,7 @@ class Form extends Component {
             {
                 name: "Symbols",
                 characters: "!@#$%^&*()_-+=|{}[]].,;:?\\/\"<>'",
-                selected: false
+                selected: true
             },
             {
                 name: "Digits",
@@ -24,7 +24,7 @@ class Form extends Component {
                 selected: true
             }
         ],
-        passwordLength: 10,
+        passwordLength: 15,
         numberOfPasswords: 10
     }
 
@@ -70,6 +70,7 @@ class Form extends Component {
 
     handlePasswordLengthChange = event => {
         this.setState({ passwordLength: event.target.value });
+        //the check below prevents from generating passwords less than 2 characters
         if (event.target.value < 2) {
             this.setState({ passwordLength: 2 });
         }
@@ -77,6 +78,7 @@ class Form extends Component {
 
     handleNumberOfPasswordsChange = event => {
         this.setState({ numberOfPasswords: event.target.value });
+        //the check below prevents from generating less than 1 password
         if (event.target.value < 1) {
             this.setState({ numberOfPasswords: 1 });
         }
