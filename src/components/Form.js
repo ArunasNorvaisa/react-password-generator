@@ -119,6 +119,7 @@ class Form extends Component {
                     <input type="number" value={ this.state.numberOfPasswords } onChange={ this.handleNumberOfPasswordsChange } />
                 </div>
             </div>
+            <h1>Generated passwords</h1>
             <div className="generated_passwords">
                 {
                     pwdArray.map((value, index) => {
