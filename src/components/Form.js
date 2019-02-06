@@ -115,7 +115,7 @@ class Form extends Component {
         // The magic happens next with the following code:
         // This gets a selection object, then creates a range where we select
         // the contents of our span element. We then make sure that the global
-        // selection doesn’t contain any range yet, and add our new range to the selection.
+        // selection doesn't contain any range yet, and add our new range to the selection.
 
                 const selection = window.getSelection();
                 const range = document.createRange();
