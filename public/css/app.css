@@ -11,6 +11,11 @@ input {
     text-align: center;
 }
 
+input[type=checkbox] {
+    transform: scale(1.6);
+    margin-left: 20px;
+}
+
 .container {
     margin: 1% auto;
     text-align: center;
@@ -18,6 +23,12 @@ input {
 
 .generated_passwords {
     padding-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.password, .password span {
+    font-family: "Courier New";
+    font-size: 20px;
+    padding: 10px;
 }
