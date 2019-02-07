@@ -104,7 +104,8 @@ class Form extends Component {
 
     render() {
 
-        const pwdArray = this.renderPasswords( this.state.numberOfPasswords );
+        const { numberOfPasswords, passwordLength } = this.state;
+        const pwdArray = this.renderPasswords( numberOfPasswords );
         return <div className="container">
             <div className="initial_options">
                 {
@@ -122,11 +123,11 @@ class Form extends Component {
                 }
                 <div className="option">
                     <div><input type="text" value="Password Length" readOnly /></div>
-                    <div><input type="number" value={ this.state.passwordLength } onChange={ this.handlePasswordLengthChange } /></div>
+                    <div><input type="number" value={ passwordLength } onChange={ this.handlePasswordLengthChange } /></div>
                 </div>
                 <div className="option">
                     <div><input type="text" value="Number of Passwords" readOnly /></div>
-                    <div><input type="number" value={ this.state.numberOfPasswords } onChange={ this.handleNumberOfPasswordsChange } /></div>
+                    <div><input type="number" value={ numberOfPasswords } onChange={ this.handleNumberOfPasswordsChange } /></div>
                 </div>
             </div>
             <h1>Generated passwords</h1>
