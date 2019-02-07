@@ -94,8 +94,16 @@ class Form extends Component {
         });
     };
 
-    render() {
+    handleClipboardCopy = event => {
+        const targetId = event.target.id;
+        const text = document.getElementById( `${targetId}` );
+        text.select();
+        document.execCommand("copy");
+        alert("Copied the text: " + text.value);
+    }
 
+    render() {
+/*
         // copy-to-clipboard code start
         // ============================
         // inspired by https://alligator.io/js/copying-to-clipboard/
@@ -118,12 +126,14 @@ class Form extends Component {
         // selection doesn't contain any range yet, and add our new range to the selection.
 
                 const selection = window.getSelection();
+                console.log('selection:', selection);
                 const range = document.createRange();
+                console.log('range:', range);
                 range.selectNodeContents(password);
                 selection.removeAllRanges();
                 selection.addRange(range);
 
-        // Next we’re ready to try and copy the selection to the clipboard
+        // Next we’re ready to try and copy the selection to the clipboard:
 
                 try {
                     document.execCommand('copy');
@@ -131,11 +141,11 @@ class Form extends Component {
 
                     const original = password.textContent;
                     password.textContent = 'Copied!';
-                    password.classList.add('success');
+                    //password.classList.add('success');
 
                     setTimeout(() => {
                         password.textContent = original;
-                        password.classList.remove('success');
+                        //password.classList.remove('success');
                     }, 1200);
                 }
 
@@ -158,38 +168,47 @@ class Form extends Component {
 
         // copy-to-clipboard code end
         // ==========================
-
+*/
         const pwdArray = this.renderPasswords( this.state.numberOfPasswords );
         return <div className="container">
-            <div>
+            <div className="initial_options">
                 {
                     this.state.options.map( (option, index) => {
-                        return <div key = { option.name }>
-                            <input type="text" value={ option.name } readOnly />
-                            <input type="text" value={ option.characters } readOnly />
-                            <input
+                        return <div key = { option.name } className="option">
+                            <div><input type="text" value={ option.name } readOnly /></div>
+                            <div><input type="text" value={ option.characters } readOnly /></div>
+                            <div><input
                                 type="checkbox"
                                 checked={ option.selected }
                                 onChange={ event => { this.handleCharListChange(index, event) } }
-                            />
+                            /></div>
                         </div>
                     })
                 }
-                <div>
-                    <input type="text" value="Password Length" readOnly />
-                    <input type="number" value={ this.state.passwordLength } onChange={ this.handlePasswordLengthChange } />
+                <div className="option">
+                    <div><input type="text" value="Password Length" readOnly /></div>
+                    <div><input type="number" value={ this.state.passwordLength } onChange={ this.handlePasswordLengthChange } /></div>
                 </div>
-                <div>
-                    <input type="text" value="Number of Passwords" readOnly />
-                    <input type="number" value={ this.state.numberOfPasswords } onChange={ this.handleNumberOfPasswordsChange } />
+                <div className="option">
+                    <div><input type="text" value="Number of Passwords" readOnly /></div>
+                    <div><input type="number" value={ this.state.numberOfPasswords } onChange={ this.handleNumberOfPasswordsChange } /></div>
                 </div>
             </div>
             <h1>Generated passwords</h1>
+            <h3>Please left-click on text to get it copied</h3>
             <div className="generated_passwords">
                 {
                     pwdArray.map((value, index) => {
+                        console.log('index:', index)
+                        console.log('value:', value)
                         return <div key = { index } className="password">
-                            <span>{ value }</span>
+                            <input
+                                type="text"
+                                id={`password${index}`}
+                                onClick={ this.handleClipboardCopy }
+                                value={ value }
+                                readOnly
+                            />
                         </div>
                     })
                 }

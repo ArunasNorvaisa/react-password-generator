@@ -21,14 +21,28 @@ input[type=checkbox] {
     text-align: center;
 }
 
+.initial_options, .option {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.initial_options {
+    flex-direction: column;
+}
+
 .generated_passwords {
     padding-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .password, .password span {
-    font-family: "Courier New";
     font-size: 20px;
     padding: 10px;
+}
+
+.password input {
+    font-family: "Courier New";
 }
