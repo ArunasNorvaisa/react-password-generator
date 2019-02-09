@@ -52,9 +52,9 @@ class Form extends Component {
 
     // Generating single password
     generateSinglePassword = charactersList => {
-        // Creating Uint8Array-type array
-        const randomNumbersArray = new Uint8Array( this.state.passwordLength );
-        // Populating the new Uint8Array with random integers in the range of 0-255
+        // Creating Uint16Array-type array
+        const randomNumbersArray = new Uint16Array( this.state.passwordLength );
+        // Populating the new Uint16Array with random integers in the range of 0-65535
         // (because this is what it can hold)
         window.crypto.getRandomValues( randomNumbersArray );
         let password = "";
@@ -62,7 +62,7 @@ class Form extends Component {
             // Calculating random integer in the range of 0-(charactersList.length-1)
             // inspired by: https://stackoverflow.com/questions/1527803/
             // (only we do not need Math.floor() as bitwise operator >> is used)
-            const randomIndex = value * charactersList.length >> 8;
+            const randomIndex = value * charactersList.length >> 16;
             password += charactersList[randomIndex];
         });
         return password;
