@@ -87,11 +87,15 @@ class Form extends Component {
     handleCharListChange = index => {
 
         this.setState(prevState => {
-            let options = [...prevState.options];
+            const options = [...prevState.options];
             options[index] = { ...options[index], selected: !options[index].selected };
-
-            return { options: options };
+            //Following 2 lines check whether at least one char option is selected and
+            //prevent unselecting them all, returning result only if at least 1 is selected
+            const isAtLeastOneOptionSelected = options.some(option => option.selected);
+            if (isAtLeastOneOptionSelected) { return { options: options } };
+            return false;
         });
+
     };
 
     handleClipboardCopy = event => {
