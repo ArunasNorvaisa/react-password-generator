@@ -90,10 +90,9 @@ class Form extends Component {
             const options = [...prevState.options];
             options[index] = { ...options[index], selected: !options[index].selected };
             //Following 2 lines check whether at least one char option is selected and
-            //prevent unselecting them all, returning result only if at least 1 is selected
+            //prevent unselecting them all, returning result only if at least 1 is there
             const isAtLeastOneOptionSelected = options.some(option => option.selected);
             if (isAtLeastOneOptionSelected) { return { options: options } };
-            return false;
         });
 
     };
