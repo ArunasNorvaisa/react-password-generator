@@ -99,7 +99,7 @@ class Form extends Component {
 
     handleClipboardCopy = function(event) {
         const id = event.target.id;
-        let text = document.getElementById(id).innerText;
+        const text = document.getElementById(id).innerText;
         this.copyToClipboard(text);
         const original = text;
         document.getElementById(id).innerText = 'Copied!';
