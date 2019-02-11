@@ -101,9 +101,12 @@ class Form extends Component {
         const id = event.target.id;
         const text = document.getElementById(id).innerText;
         this.copyToClipboard(text);
+        // We prepare to alter copied text to 'Copied!'
         const original = text;
+        // Altering the text
         document.getElementById(id).innerText = 'Copied!';
 
+        // Setting timeout of 1.2s and bringing the password back
         setTimeout(() => {
             document.getElementById(id).innerText = original;
         }, 1200);
