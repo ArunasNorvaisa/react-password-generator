@@ -2,7 +2,7 @@
 No description yet
 
 ### Version
-* 0.0.1
+* 1.0.0
 
 ### Demo
 * None yet
@@ -16,7 +16,7 @@ $ npm build
 ```
 
 * Open /build/index.html in your browser and, if everything works as intended,
-* Upload contents of BUILD folder to your hosting provider.
+* upload contents of BUILD folder to your hosting provider.
 
 ### Support:
 
