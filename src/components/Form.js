@@ -24,7 +24,7 @@ class Form extends Component {
                 selected: true
             }
         ],
-        passwordLength: 15,
+        passwordLength: 12,
         numberOfPasswords: 10
     };
 
@@ -104,11 +104,13 @@ class Form extends Component {
         // We prepare to alter copied text to 'Copied!'
         const original = text;
         // Altering the text
-        document.getElementById(id).innerText = 'Copied!';
+        document.getElementById(id).innerText = 'Text Copied!';
+        document.getElementById(id).parentElement.classList.add("red");
 
         // Setting timeout of 1.2s and bringing the original password back
         setTimeout(() => {
             document.getElementById(id).innerText = original;
+            document.getElementById(id).parentElement.classList.remove("red");
         }, 1200);
     }
 
