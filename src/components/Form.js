@@ -106,7 +106,7 @@ class Form extends Component {
         // Altering the text
         document.getElementById(id).innerText = 'Copied!';
 
-        // Setting timeout of 1.2s and bringing the password back
+        // Setting timeout of 1.2s and bringing the original password back
         setTimeout(() => {
             document.getElementById(id).innerText = original;
         }, 1200);
