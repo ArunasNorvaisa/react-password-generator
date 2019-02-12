@@ -97,11 +97,11 @@ class Form extends Component {
 
     };
 
-    handleClipboardCopy = function(event) {
+    handleClipboardCopy = event => {
         const id = event.target.id;
         const text = document.getElementById(id).innerText;
         this.copyToClipboard(text);
-        // We prepare to alter copied text to 'Copied!'
+        // We prepare to alter copied text to 'Text Copied!'
         const original = text;
         // Altering the text
         document.getElementById(id).innerText = 'Text Copied!';
@@ -114,7 +114,7 @@ class Form extends Component {
         }, 1200);
     }
 
-    copyToClipboard(str) {
+    copyToClipboard = str => {
         const el = document.createElement('textarea');  // Create a <textarea> element
         el.value = str;                                 // Set its value to the string that you want copied
         el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof
@@ -170,7 +170,7 @@ class Form extends Component {
                         return <div key = { index } className="password">
                             <span
                                 id={`password${index}`}
-                                onClick={event => this.handleClipboardCopy(event)}
+                                onClick={this.handleClipboardCopy.bind(this)}
                             >
                                 {value}
                             </span>

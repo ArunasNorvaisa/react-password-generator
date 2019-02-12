@@ -51,6 +51,6 @@ input[type=checkbox] {
 }
 
 .red {
-    background-color: #fff;
-    color: red;
+    background-color: #ff0000;
+    color: #eee;
 }
