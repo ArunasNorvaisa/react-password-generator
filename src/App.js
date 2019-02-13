@@ -106,12 +106,13 @@ class App extends Component {
         // Altering the text
         // The following function is the best solution I came to prevent the nasty effect
         // when passwords were hopping around on a page due to the change in length. It
-        // does not change the password length, adding some exclamation marks when necessary
+        // does not change the password length, adding some exclamation marks when necessary.
+        // Not very elegant, so please feel free to comment and recommend something else.
         const tempText = () => {
-            let tmpText = 'Copied!';
+            let tmpText = 'COPIED!';
             const diff = this.state.passwordLength - tmpText.length;
             if(diff > 0) {
-                tmpText += "!".repeat(diff);
+                tmpText = "!".repeat(diff / 2 + diff % 2) + tmpText + "!".repeat(diff / 2);
                 return tmpText;
             }
             return tmpText;
