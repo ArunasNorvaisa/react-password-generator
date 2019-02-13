@@ -108,12 +108,10 @@ class App extends Component {
         // when passwords were hopping around on a page due to the change in length. It
         // does not change the password length, adding some exclamation marks when necessary
         const tempText = () => {
-            let tmpText = 'Text Copied!';
+            let tmpText = 'Copied!';
             const diff = this.state.passwordLength - tmpText.length;
             if(diff > 0) {
-                for(let i = 0; i < diff; i++) {
-                    tmpText += "!";
-                }
+                tmpText += "!".repeat(diff);
                 return tmpText;
             }
             return tmpText;
@@ -128,7 +126,7 @@ class App extends Component {
         }, 1200);
     }
 
-    // Following was shamelessly copied from:
+    // Below function was shamelessly copied from:
     // https://stackoverflow.com/questions/45071353
     copyToClipboard = str => {
         const el = document.createElement('textarea');  // Create a <textarea> element
