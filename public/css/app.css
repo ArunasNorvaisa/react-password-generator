@@ -16,6 +16,11 @@ input[type=checkbox] {
     margin-left: 20px;
 }
 
+textarea {
+    position: absolute;
+    right: 9999px;
+}
+
 .container {
     margin: 1% auto;
     text-align: center;

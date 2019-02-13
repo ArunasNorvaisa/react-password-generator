@@ -126,14 +126,14 @@ class App extends Component {
         }, 1200);
     }
 
-    // Below function was shamelessly copied from:
-    // https://stackoverflow.com/questions/45071353
+    // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
     copyToClipboard = str => {
         const el = document.createElement('textarea');  // Create a <textarea> element
         el.value = str;                                 // Set its value to the string that you want copied
         el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof
-        el.style.position = 'absolute';
-        el.style.left = '-9999px';                      // Move outside the screen to make it invisible
+        // 2 below lines were added to .css file
+        //el.style.position = 'absolute';
+        //el.style.left = '-9999px';                    // Move outside the screen to make it invisible
         document.body.appendChild(el);                  // Append the <textarea> element to the HTML document
         const selected =
             document.getSelection().rangeCount > 0      // Check if there is any content selected previously
