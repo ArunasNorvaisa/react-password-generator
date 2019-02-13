@@ -101,11 +101,12 @@ class App extends Component {
         const id = event.target.id;
         const text = document.getElementById(id).innerText;
         this.copyToClipboard(text);
-        // We prepare to alter copied text to 'Text Copied!'
+        // We prepare to alter copied text to temporary value
         const original = text;
         // Altering the text
         // The following function is the best solution I came to prevent the nasty effect
-        // when passwords were hopping around on a page due to the change in length
+        // when passwords were hopping around on a page due to the change in length. It
+        // does not change the password length, adding some exclamation marks when necessary
         const tempText = () => {
             let tmpText = 'Text Copied!';
             const diff = this.state.passwordLength - tmpText.length;
