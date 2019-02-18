@@ -112,11 +112,11 @@ class App extends Component {
             let tmpText = 'COPIED!';
             const diff = this.state.passwordLength - tmpText.length;
             if(diff > 0) {
-                tmpText = "!".repeat(diff / 2 + diff % 2) + tmpText + "!".repeat(diff / 2);
+                tmpText = "!".repeat((diff >> 1) + (diff & 1)) + tmpText + "!".repeat(diff >> 1);
                 return tmpText;
             }
             return tmpText;
-        }
+        };
         document.getElementById(id).innerText = tempText();
         document.getElementById(id).parentElement.classList.add("red");
 
@@ -125,7 +125,7 @@ class App extends Component {
             document.getElementById(id).innerText = original;
             document.getElementById(id).parentElement.classList.remove("red");
         }, 1200);
-    }
+    };
 
     // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
     copyToClipboard = str => {
