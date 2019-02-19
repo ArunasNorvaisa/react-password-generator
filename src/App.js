@@ -112,6 +112,7 @@ class App extends Component {
             let tmpText = 'COPIED!';
             const diff = this.state.passwordLength - tmpText.length;
             if(diff > 0) {
+        // diff >> 1 is the same as diff / 2; diff & 1 - the same as diff %2
                 tmpText = "!".repeat((diff >> 1) + (diff & 1)) + tmpText + "!".repeat(diff >> 1);
                 return tmpText;
             }
