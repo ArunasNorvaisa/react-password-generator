@@ -4,8 +4,12 @@ html {
     font-family: 'Zilla Slab', serif;
 }
 
+h1, h4 {
+    text-align: center;
+}
+
 input {
-    font-size: 1.3rem;
+    font-size: 1.3em;
     font-family: 'Arima Madurai', cursive;
     padding: 8px;
     text-align: center;
@@ -59,3 +63,9 @@ textarea {
     background-color: #ff0000;
     color: #eee;
 }
+
+@media only screen and (max-width: 700px) {
+    body {
+      font-size: 10px;
+    }
+  }

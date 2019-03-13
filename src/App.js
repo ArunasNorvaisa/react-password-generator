@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class App extends Component {
+class App extends React.Component {
     state = {
         options: [
             {
@@ -112,7 +112,7 @@ class App extends Component {
             let tmpText = 'COPIED!';
             const diff = this.state.passwordLength - tmpText.length;
             if(diff > 0) {
-        // diff >> 1 is the same as diff / 2; diff & 1 - the same as diff %2
+        // diff >> 1 is the same as diff / 2; diff & 1 - the same as diff % 2
                 tmpText = "!".repeat((diff >> 1) + (diff & 1)) + tmpText + "!".repeat(diff >> 1);
                 return tmpText;
             }
@@ -132,7 +132,7 @@ class App extends Component {
     copyToClipboard = str => {
         const el = document.createElement('textarea');  // Create a <textarea> element
         el.value = str;                                 // Set its value to the string that you want copied
-        el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof
+        el.setAttribute('readonly', '');// Make it readonly to be tamper-proof
         // 2 below lines were added to .css file
         //el.style.position = 'absolute';
         //el.style.left = '-9999px';                    // Move outside the screen to make it invisible
