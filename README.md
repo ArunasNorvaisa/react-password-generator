@@ -1,11 +1,11 @@
 # React password generator
-No description yet
+* An attempt to create a secure password generator in React.
 
 ### Version
-* 1.0.1
+* 1.1.1
 
 ### Demo
-* None yet
+* https://arunas.org/react-pwd
 
 ### Usage:
 ```sh
