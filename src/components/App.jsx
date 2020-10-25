@@ -93,30 +93,18 @@ function App () {
 
   function handleClipboardCopy(event) {
     const id = event.target.id;
-    const text = document.getElementById(id).innerText;
+    const container = document.getElementById(id);
+    const text = container.innerText;
     copyToClipboard(text);
-    // We prepare to alter copied text to temporary value
-    const original = text;
-    // Altering the text
-    // Not very elegant, so please feel free to comment and recommend something else.
-    const tempText = () => {
-      let tmpText = 'COPIED!';
-      const diff = state.passwordLength - tmpText.length;
-      if(diff > 0) {
-        // diff >> 1 is the same as diff / 2; diff & 1 - the same as diff % 2
-        tmpText = '!'.repeat((diff >> 1) + (diff & 1)) + tmpText + '!'.repeat(diff >> 1);
-        return tmpText;
-      }
-      return tmpText;
-    };
-    document.getElementById(id).innerText = tempText();
-    document.getElementById(id).parentElement.classList.add(`${styles.red}`);
 
-    // Setting timeout of 1.2s and bringing the original password back
+    const notification = document.createElement('div');
+    notification.classList.add(`${styles.red}`);
+    notification.innerText = 'COPIED!!!';
+    container.appendChild(notification);
+
     setTimeout(() => {
-      document.getElementById(id).innerText = original;
-      document.getElementById(id).parentElement.classList.remove(`${styles.red}`);
-    }, 1200);
+      notification.remove();
+    }, 3000);
   }
 
   // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
@@ -169,7 +157,7 @@ function App () {
     </table>
     <h1>Generated passwords</h1>
     <h3>Please left-click on text to get it copied</h3>
-    <div className={styles.generatedPasswords}>
+    <div className={styles.generatedPasswords} id="notification">
       {
         pwdArray.map((value, index) => {
           return <p key = { index } className={ styles.password }>
