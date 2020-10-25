@@ -2,7 +2,7 @@
 * An attempt to create a secure password generator in React.
 
 ### Version
-* 1.1.1
+* 2.0.0
 
 ### Demo
 * https://arunas.org/react-pwd
@@ -11,8 +11,8 @@
 ```sh
 $ git clone git@github.com:ArunasNorvaisa/react-password-generator.git
 $ cd react-password-generator
-$ npm install -d
-$ npm build
+$ yarn
+$ yarn run build
 ```
 
 * Open /build/index.html in your browser and, if everything works as intended,
