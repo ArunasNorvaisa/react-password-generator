@@ -55,7 +55,7 @@ function App () {
   function generateSinglePassword(charactersList) {
     const randomNumbersArray = new Uint16Array(state.passwordLength);
     crypto.getRandomValues(randomNumbersArray);
-    let password = "";
+    let password = '';
     randomNumbersArray.forEach(value => {
       // Calculating random integer in the range of 0-(charactersList.length-1)
       // inspired by: https://stackoverflow.com/questions/1527803/
@@ -64,20 +64,6 @@ function App () {
       password += charactersList[randomIndex];
     });
     return password;
-  }
-
-  function handlePasswordLengthChange(event) {
-    setState({...state, passwordLength: event.target.value });
-    if (event.target.value < 2) {
-      setState({...state, passwordLength: 2 });
-    }
-  }
-
-  function handleNumberOfPasswordsChange(event) {
-    setState({...state, numberOfPasswords: event.target.value });
-    if (event.target.value < 1) {
-      setState({...state, numberOfPasswords: 1 });
-    }
   }
 
   function handleCharListChange(index) {
@@ -104,7 +90,7 @@ function App () {
 
     setTimeout(() => {
       notification.remove();
-    }, 3000);
+    }, 2121);
   }
 
   // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
@@ -147,11 +133,25 @@ function App () {
         }
         <tr>
           <td><div className={styles.description}>Password Length</div></td>
-          <td><input type="number" value={ passwordLength } onChange={ handlePasswordLengthChange } /></td>
+          <td>
+            <input
+              type="number"
+              min="2"
+              value={ passwordLength }
+              onChange={ e => setState({...state, passwordLength: e.target.value }) }
+            />
+          </td>
         </tr>
         <tr>
           <td><div className={styles.description}>Number of Passwords</div></td>
-          <td><input type="number" value={ numberOfPasswords } onChange={ handleNumberOfPasswordsChange } /></td>
+          <td>
+            <input
+              type="number"
+              min="1"
+              value={ numberOfPasswords }
+              onChange={ e => setState({...state, numberOfPasswords: e.target.value }) }
+            />
+          </td>
         </tr>
       </tbody>
     </table>
