@@ -90,7 +90,7 @@ function App () {
 
     setTimeout(() => {
       notification.remove();
-    }, 2121);
+    }, 1221);
   }
 
   // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
