@@ -24,14 +24,14 @@ const initialState = {
       selected: true
     }
   ],
-  passwordLength: 12,
+  passwordLength: 30,
   numberOfPasswords: 10
 };
 
 function App () {
 
   const [state, setState] = useState(initialState);
-  const { numberOfPasswords, options, passwordLength } = state;
+  const {numberOfPasswords, options, passwordLength} = state;
 
   function renderPasswords(numberOfPasswords) {
     const passwordsArray = [];
@@ -39,16 +39,18 @@ function App () {
     for(let i = 1; i <= numberOfPasswords; i++) {
       passwordsArray.push(generateSinglePassword(charactersList));
     }
+
     return passwordsArray;
   }
 
   function generateCharactersList() {
-    let charactersList = "";
+    let charactersList = '';
     options.forEach(option => {
       if(option.selected) {
         charactersList += option.characters;
       }
     });
+
     return charactersList;
   }
 
@@ -63,17 +65,19 @@ function App () {
       const randomIndex = value * charactersList.length >> 16;
       password += charactersList[randomIndex];
     });
+
     return password;
   }
 
   function handleCharListChange(index) {
     setState(() => {
-      options[index] = { ...options[index], selected: !options[index].selected };
+      options[index] = {...options[index], selected: !options[index].selected};
       const isAtLeastOneOptionSelected = options.some(option => option.selected);
       if (!isAtLeastOneOptionSelected) {
-        options[index] = { ...options[index], selected: true };
+        options[index] = {...options[index], selected: true};
       }
-      return { ...state };
+
+      return {...state};
     });
   }
 
@@ -95,15 +99,15 @@ function App () {
 
   // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
   function copyToClipboard(str) {
-    const el = document.createElement('textarea'); // Create a <textarea> element
+    const el = document.createElement('textarea');          // Create a <textarea> element
     el.value = str;                                         // Set its value to the string that you want copied
-    el.setAttribute('readonly', '');      // Make it readonly to be tamper-proof
+    el.setAttribute('readonly', '');                        // Make it readonly to be tamper-proof
     document.body.appendChild(el);                          // Append the <textarea> element to the HTML document
     const selected = document.getSelection().rangeCount > 0 // Check if there is any content selected previously
-      ? document.getSelection().getRangeAt(0)         // Store selection if found
+      ? document.getSelection().getRangeAt(0)               // Store selection if found
       : false;                                              // Mark as false to know no selection existed before
     el.select();                                            // Select the <textarea> content
-    document.execCommand('copy');                // Copy - only works as a result of a user action (e.g. click events)
+    document.execCommand('copy');                           // Copy - only works as a result of a user action (e.g. click events)
     document.body.removeChild(el);                          // Remove the <textarea> element
     if (selected) {                                         // If a selection existed before copying
       document.getSelection().removeAllRanges();            // Unselect everything on the HTML document
@@ -113,19 +117,19 @@ function App () {
 
   const pwdArray = renderPasswords(numberOfPasswords);
 
-  return <div className={ styles.container }>
+  return <div className={styles.container}>
     <table>
       <tbody>
         {
           options.map((option, index) => {
-            return <tr key = { option.name }>
-              <td><div className={styles.description}>{ option.name }</div></td>
-              <td><div className={styles.description}>{ option.characters }</div></td>
+            return <tr key = {option.name}>
+              <td><div className={styles.description}>{option.name}</div></td>
+              <td><div className={styles.description}>{option.characters}</div></td>
               <td>
                 <input
                   type="checkbox"
-                  checked={ option.selected }
-                  onChange={ () => handleCharListChange(index) }
+                  checked={option.selected}
+                  onChange={() => handleCharListChange(index)}
                 />
               </td>
             </tr>
@@ -138,7 +142,7 @@ function App () {
               type="number"
               min="2"
               value={ passwordLength }
-              onChange={ e => setState({...state, passwordLength: e.target.value }) }
+              onChange={e => setState({...state, passwordLength: e.target.value })}
             />
           </td>
         </tr>
@@ -148,8 +152,8 @@ function App () {
             <input
               type="number"
               min="1"
-              value={ numberOfPasswords }
-              onChange={ e => setState({...state, numberOfPasswords: e.target.value }) }
+              value={numberOfPasswords}
+              onChange={e => setState({...state, numberOfPasswords: e.target.value })}
             />
           </td>
         </tr>
@@ -160,8 +164,8 @@ function App () {
     <div className={styles.generatedPasswords} id="notification">
       {
         pwdArray.map((value, index) => {
-          return <p key = { index } className={ styles.password }>
-            <span id={`password${index}`} onClick={ handleClipboardCopy }>
+          return <p key = {index} className={styles.password}>
+            <span id={`password${index}`} onClick={handleClipboardCopy}>
               {value}
             </span>
           </p>
