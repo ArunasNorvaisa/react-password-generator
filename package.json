@@ -3,7 +3,7 @@
   "private": true,
   "version": "2.0.0",
   "scripts": {
-    "start": "webpack serve --color --config webpack.dev.js --watch",
+    "start": "webpack serve --color --config webpack.dev.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
     "lint": "eslint src/**/*.{js,jsx} --color",

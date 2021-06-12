@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import * as styles from '../css/styles.scss';
 
 const initialState = {
@@ -25,18 +25,18 @@ const initialState = {
     }
   ],
   passwordLength: 30,
-  numberOfPasswords: 10
+  numberOfPasswords: 11
 };
 
-function App () {
+function App() {
 
   const [state, setState] = useState(initialState);
-  const {numberOfPasswords, options, passwordLength} = state;
+  const { numberOfPasswords, options, passwordLength } = state;
 
   function renderPasswords(numberOfPasswords) {
     const passwordsArray = [];
     const charactersList = generateCharactersList();
-    for(let i = 1; i <= numberOfPasswords; i++) {
+    for (let i = 1; i <= numberOfPasswords; i++) {
       passwordsArray.push(generateSinglePassword(charactersList));
     }
 
@@ -46,7 +46,7 @@ function App () {
   function generateCharactersList() {
     let charactersList = '';
     options.forEach(option => {
-      if(option.selected) {
+      if (option.selected) {
         charactersList += option.characters;
       }
     });
@@ -71,13 +71,13 @@ function App () {
 
   function handleCharListChange(index) {
     setState(() => {
-      options[index] = {...options[index], selected: !options[index].selected};
+      options[index] = { ...options[index], selected: !options[index].selected };
       const isAtLeastOneOptionSelected = options.some(option => option.selected);
       if (!isAtLeastOneOptionSelected) {
-        options[index] = {...options[index], selected: true};
+        options[index] = { ...options[index], selected: true };
       }
 
-      return {...state};
+      return { ...state };
     });
   }
 
@@ -122,7 +122,7 @@ function App () {
       <tbody>
         {
           options.map((option, index) => {
-            return <tr key = {option.name}>
+            return <tr key={option.name}>
               <td><div className={styles.description}>{option.name}</div></td>
               <td><div className={styles.description}>{option.characters}</div></td>
               <td>
@@ -141,8 +141,8 @@ function App () {
             <input
               type="number"
               min="2"
-              value={ passwordLength }
-              onChange={e => setState({...state, passwordLength: e.target.value })}
+              value={passwordLength}
+              onChange={e => setState({ ...state, passwordLength: e.target.value })}
             />
           </td>
         </tr>
@@ -153,7 +153,7 @@ function App () {
               type="number"
               min="1"
               value={numberOfPasswords}
-              onChange={e => setState({...state, numberOfPasswords: e.target.value })}
+              onChange={e => setState({ ...state, numberOfPasswords: e.target.value })}
             />
           </td>
         </tr>
@@ -164,7 +164,7 @@ function App () {
     <div className={styles.generatedPasswords} id="notification">
       {
         pwdArray.map((value, index) => {
-          return <p key = {index} className={styles.password}>
+          return <p key={index} className={styles.password}>
             <span id={`password${index}`} onClick={handleClipboardCopy}>
               {value}
             </span>
