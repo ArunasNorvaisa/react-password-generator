@@ -40,25 +40,25 @@ function App() {
 
   function renderPasswords(numberOfPasswords) {
     return Functor([])
-      .out(x => {
+      .out(passwords => {
         for (let i = 0; i < numberOfPasswords; i++) {
           Functor(generateCharactersList())
             .map(charList => generateSinglePassword(charList))
-            .out(password => x.push(password))
+            .out(password => passwords.push(password))
         }
-        return x;
+        return passwords;
       })
   }
 
   function generateCharactersList() {
     return Functor('')
-      .out(x => {
+      .out(charList => {
         options.forEach(option => {
           if (option.selected) {
-            x += option.characters;
+            charList += option.characters;
           }
         });
-        return x;
+        return charList;
       })
   }
 
