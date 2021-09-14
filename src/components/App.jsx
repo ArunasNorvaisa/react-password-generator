@@ -38,11 +38,12 @@ function App() {
   const [state, setState] = useState(initialState);
   const { numberOfPasswords, options, passwordLength } = state;
 
-  function renderPasswords(numberOfPasswords) {
+  function renderPasswords(howMany) {
     return Functor([])
       .out(passwords => {
-        for (let i = 0; i < numberOfPasswords; i++) {
-          Functor(generateCharactersList())
+        for (let i = 1; i <= howMany; i++) {
+          Functor()
+            .map(generateCharactersList)
             .map(charList => generateSinglePassword(charList))
             .out(password => passwords.push(password))
         }
