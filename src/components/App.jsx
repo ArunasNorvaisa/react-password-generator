@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as styles from '../css/styles.scss';
 
-const Functor = (v) => ({
+const Functor = v => ({
   map: f => Functor(f(v)),
   out: f => f(v)
 });
@@ -39,18 +39,20 @@ function App() {
   const { numberOfPasswords, options, passwordLength } = state;
 
   function renderPasswords(numberOfPasswords) {
-    const passwordsArray = [];
-    const charactersList = generateCharactersList();
-    for (let i = 1; i <= numberOfPasswords; i++) {
-      passwordsArray.push(generateSinglePassword(charactersList));
-    }
-
-    return passwordsArray;
+    return Functor([])
+      .out(x => {
+        for (let i = 0; i < numberOfPasswords; i++) {
+          Functor(generateCharactersList())
+            .map(charList => generateSinglePassword(charList))
+            .out(password => x.push(password))
+        }
+        return x;
+      })
   }
 
   function generateCharactersList() {
     return Functor('')
-      .map(x => {
+      .out(x => {
         options.forEach(option => {
           if (option.selected) {
             x += option.characters;
@@ -58,7 +60,6 @@ function App() {
         });
         return x;
       })
-      .out(x => x);
   }
 
   function generateSinglePassword(characterList) {
