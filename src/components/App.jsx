@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as styles from '../css/styles.scss';
-import { handleClipboardCopy, renderPasswords } from './functions';
+import { handleClipboardCopy, renderPasswords } from '../hooks/usePasswords';
 
 const initialState = {
   options: [
