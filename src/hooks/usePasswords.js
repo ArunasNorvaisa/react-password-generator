@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as styles from '../css/styles.scss';
 
 const Functor = v => ({
@@ -5,7 +6,7 @@ const Functor = v => ({
   out: f => f(v)
 });
 
-export function renderPasswords(howMany, length, options) {
+function renderPasswords(howMany, length, options) {
   return Functor([])
     .out(passwords => {
       for (let i = 1; i <= howMany; i++) {
@@ -35,7 +36,7 @@ function generateCharactersList(options) {
 function generateSinglePassword(characterList, passwordLength) {
   return Functor()
     .map(() => new Uint16Array(passwordLength))
-    .map(randomNumbersArray => crypto.getRandomValues(randomNumbersArray))
+    .map(emptyNumbersArray => crypto.getRandomValues(emptyNumbersArray))
     .out(randomNumbersArray => {
       let password = '';
       for (const number of randomNumbersArray) {
@@ -84,3 +85,61 @@ function copyToClipboard(str) {
     document.getSelection().addRange(selected);           // Restore the original selection
   }
 }
+
+const initialState = {
+  options: [
+    {
+      name: 'Lowercase characters',
+      characters: 'abcdefghijklmnopqrstuvwxyz',
+      selected: true
+    },
+    {
+      name: 'Uppercase characters',
+      characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      selected: true
+    },
+    {
+      name: 'Symbols',
+      characters: '!@#$%^&*()_-+=|{}[]].,;:?\\/\"<>\'',
+      selected: true
+    },
+    {
+      name: 'Digits',
+      characters: '0123456789',
+      selected: true
+    }
+  ],
+  passwordLength: 30,
+  numberOfPasswords: 11
+};
+
+const usePasswords = () => {
+  const [state, setState] = useState(initialState);
+  const pwdArray = renderPasswords(state.numberOfPasswords, state.passwordLength, state.options);
+
+  function change(field, value) {
+    setState({ ...state, [field]: Number(value) });
+  }
+
+  function handleCharListChange(index) {
+    setState(() => {
+      state.options[index] = { ...state.options[index], selected: !state.options[index].selected };
+      const isAtLeastOneOptionSelected = state.options.some(option => option.selected);
+      if (!isAtLeastOneOptionSelected) {
+        state.options[index] = { ...state.options[index], selected: true };
+      }
+
+      return { ...state };
+    });
+  }
+
+  return {
+    state,
+    pwdArray,
+    change,
+    handleCharListChange
+  }
+};
+
+export default usePasswords;
+

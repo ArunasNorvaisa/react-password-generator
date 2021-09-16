@@ -1,52 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import usePasswords, { handleClipboardCopy } from '../hooks/usePasswords';
 import * as styles from '../css/styles.scss';
-import { handleClipboardCopy, renderPasswords } from '../hooks/usePasswords';
-
-const initialState = {
-  options: [
-    {
-      name: 'Lowercase characters',
-      characters: 'abcdefghijklmnopqrstuvwxyz',
-      selected: true
-    },
-    {
-      name: 'Uppercase characters',
-      characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      selected: true
-    },
-    {
-      name: 'Symbols',
-      characters: '!@#$%^&*()_-+=|{}[]].,;:?\\/\"<>\'',
-      selected: true
-    },
-    {
-      name: 'Digits',
-      characters: '0123456789',
-      selected: true
-    }
-  ],
-  passwordLength: 30,
-  numberOfPasswords: 11
-};
 
 function App() {
-
-  const [state, setState] = useState(initialState);
-  const { numberOfPasswords, options, passwordLength } = state;
-
-  function handleCharListChange(index) {
-    setState(() => {
-      options[index] = { ...options[index], selected: !options[index].selected };
-      const isAtLeastOneOptionSelected = options.some(option => option.selected);
-      if (!isAtLeastOneOptionSelected) {
-        options[index] = { ...options[index], selected: true };
-      }
-
-      return { ...state };
-    });
-  }
-
-  const pwdArray = renderPasswords(numberOfPasswords, passwordLength, options);
+  const { state, pwdArray, change, handleCharListChange } = usePasswords();
+  const { options, numberOfPasswords, passwordLength } = state;
 
   return <div className={styles.container}>
     <table>
@@ -79,7 +37,7 @@ function App() {
             type="number"
             min="2"
             value={passwordLength}
-            onChange={e => setState({ ...state, passwordLength: e.target.value })}
+            onChange={e => change('passwordLength', e.target.value)}
           />
         </td>
       </tr>
@@ -92,7 +50,7 @@ function App() {
             type="number"
             min="1"
             value={numberOfPasswords}
-            onChange={e => setState({ ...state, numberOfPasswords: e.target.value })}
+            onChange={e => change('numberOfPasswords', e.target.value)}
           />
         </td>
       </tr>
