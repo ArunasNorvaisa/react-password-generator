@@ -30,7 +30,7 @@ function App() {
       }
       <tr>
         <td>
-          <div className={styles.description}>Password Length (max: 255)</div>
+          <div className={styles.description}>Password Length <span>(max: 255)</span></div>
         </td>
         <td>
           <input
@@ -44,7 +44,7 @@ function App() {
       </tr>
       <tr>
         <td>
-          <div className={styles.description}>Number of Passwords (max: 199)</div>
+          <div className={styles.description}>Number of Passwords <span>(max: 199)</span></div>
         </td>
         <td>
           <input

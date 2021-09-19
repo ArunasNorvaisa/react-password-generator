@@ -15,6 +15,13 @@ input, .description {
   box-sizing: border-box;
 }
 
+.description > span {
+  padding: 4px;
+  color: #aaa;
+  background-color: linen;
+  font-size: 0.8rem;
+}
+
 input[type=checkbox] {
   transform: scale(1.6);
   margin-left: 20px;
@@ -73,6 +80,10 @@ textarea {
 
 @media only screen and (max-width: 992px) {
   body {
-    font-size: 10px;
+    font-size: 0.7rem;
+  }
+
+  .description > span {
+    font-size: 0.5rem;
   }
 }
