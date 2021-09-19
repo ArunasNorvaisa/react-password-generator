@@ -18,11 +18,11 @@ function renderPasswords(howMany, length, options) {
         Functor()
           .map(() => generateCharactersList(options))
           .map(charList => generateSinglePassword(charList, length))
-          .out(password => passwords.push(password))
+          .out(password => passwords.push(password));
       }
 
       return passwords;
-    })
+    });
 }
 
 function generateCharactersList(options) {
@@ -35,7 +35,7 @@ function generateCharactersList(options) {
       });
 
       return charList;
-    })
+    });
 }
 
 function generatePassword(array, characterList) {
@@ -46,7 +46,7 @@ function generatePassword(array, characterList) {
       // inspired by: https://stackoverflow.com/questions/1527803/
       // (only we do not need Math.floor() as bitwise operator >> is used)
       .map(() => number * characterList.length >> 16)
-      .out(randomIndex => password += characterList[randomIndex])
+      .out(randomIndex => password += characterList[randomIndex]);
   }
 
   return password;
@@ -95,22 +95,24 @@ function copyToClipboard(str) {
 
 function validate(field, value) {
   let number = Number(value);
-  if (field === 'passwordLength') {
-    if (number > MAX_PASSWORD_LENGTH) {
-      number = MAX_PASSWORD_LENGTH;
-    } else if (number < MIN_PASSWORD_LENGTH) {
-      number = MIN_PASSWORD_LENGTH;
-    }
+  switch (field) {
+    case 'passwordLength':
+      if (number > MAX_PASSWORD_LENGTH) {
+        number = MAX_PASSWORD_LENGTH;
+      } else if (number < MIN_PASSWORD_LENGTH) {
+        number = MIN_PASSWORD_LENGTH;
+      }
+      return number;
+    case 'numberOfPasswords':
+      if (number > MAX_NUMBER_OF_PASSWORDS) {
+        number = MAX_NUMBER_OF_PASSWORDS;
+      } else if (number < MIN_NUMBER_OF_PASSWORDS) {
+        number = MIN_NUMBER_OF_PASSWORDS;
+      }
+      return number;
+    default:
+      return number;
   }
-  if (field === 'numberOfPasswords') {
-    if (number > MAX_NUMBER_OF_PASSWORDS) {
-      number = MAX_NUMBER_OF_PASSWORDS;
-    } else if (number < MIN_NUMBER_OF_PASSWORDS) {
-      number = MIN_NUMBER_OF_PASSWORDS;
-    }
-  }
-
-  return number;
 }
 
 const initialState = {
@@ -168,7 +170,7 @@ const usePasswords = () => {
     pwdArray,
     change,
     handleCharListChange
-  }
+  };
 };
 
 export default usePasswords;
