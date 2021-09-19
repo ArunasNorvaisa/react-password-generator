@@ -1,5 +1,5 @@
 import React from 'react';
-import usePasswords, { handleClipboardCopy } from '../hooks/usePasswords';
+import usePasswords, { MAX_NUMBER_OF_PASSWORDS, MAX_PASSWORD_LENGTH, MIN_NUMBER_OF_PASSWORDS, MIN_PASSWORD_LENGTH, handleClipboardCopy } from '../hooks/usePasswords';
 import * as styles from '../css/styles.scss';
 
 function App() {
@@ -30,12 +30,13 @@ function App() {
       }
       <tr>
         <td>
-          <div className={styles.description}>Password Length</div>
+          <div className={styles.description}>Password Length (max: 255)</div>
         </td>
         <td>
           <input
             type="number"
-            min="2"
+            min={MIN_PASSWORD_LENGTH}
+            max={MAX_PASSWORD_LENGTH}
             value={passwordLength}
             onChange={e => change('passwordLength', e.target.value)}
           />
@@ -43,12 +44,13 @@ function App() {
       </tr>
       <tr>
         <td>
-          <div className={styles.description}>Number of Passwords</div>
+          <div className={styles.description}>Number of Passwords (max: 199)</div>
         </td>
         <td>
           <input
             type="number"
-            min="1"
+            min={MIN_NUMBER_OF_PASSWORDS}
+            max={MAX_NUMBER_OF_PASSWORDS}
             value={numberOfPasswords}
             onChange={e => change('numberOfPasswords', e.target.value)}
           />

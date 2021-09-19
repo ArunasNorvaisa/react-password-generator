@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import * as styles from '../css/styles.scss';
 
+export const MAX_PASSWORD_LENGTH = 255;
+export const MIN_PASSWORD_LENGTH = 2;
+export const MAX_NUMBER_OF_PASSWORDS = 199;
+export const MIN_NUMBER_OF_PASSWORDS = 1;
+
 const Functor = v => ({
   map: f => Functor(f(v)),
   out: f => f(v)
@@ -33,7 +38,7 @@ function generateCharactersList(options) {
     })
 }
 
-function generatePasswordFromNumbersArray(array, characterList) {
+function generatePassword(array, characterList) {
   let password = '';
   for (const number of array) {
     Functor()
@@ -51,7 +56,7 @@ function generateSinglePassword(characterList, passwordLength) {
   return Functor()
     .map(() => new Uint16Array(passwordLength))
     .map(emptyNumbersArray => crypto.getRandomValues(emptyNumbersArray))
-    .out(randomNumbersArray => generatePasswordFromNumbersArray(randomNumbersArray, characterList));
+    .out(randomNumbersArray => generatePassword(randomNumbersArray, characterList));
 }
 
 export function handleClipboardCopy(event) {
@@ -88,6 +93,26 @@ function copyToClipboard(str) {
   }
 }
 
+function validate(field, value) {
+  let number = Number(value);
+  if (field === 'passwordLength') {
+    if (number > MAX_PASSWORD_LENGTH) {
+      number = MAX_PASSWORD_LENGTH;
+    } else if (number < MIN_PASSWORD_LENGTH) {
+      number = MIN_PASSWORD_LENGTH;
+    }
+  }
+  if (field === 'numberOfPasswords') {
+    if (number > MAX_NUMBER_OF_PASSWORDS) {
+      number = MAX_NUMBER_OF_PASSWORDS;
+    } else if (number < MIN_NUMBER_OF_PASSWORDS) {
+      number = MIN_NUMBER_OF_PASSWORDS;
+    }
+  }
+
+  return number;
+}
+
 const initialState = {
   options: [
     {
@@ -117,18 +142,21 @@ const initialState = {
 
 const usePasswords = () => {
   const [state, setState] = useState(initialState);
-  const pwdArray = renderPasswords(state.numberOfPasswords, state.passwordLength, state.options);
+  const { numberOfPasswords, passwordLength, options } = state;
+  const pwdArray = renderPasswords(numberOfPasswords, passwordLength, options);
 
   function change(field, value) {
-    setState({ ...state, [field]: Number(value) });
+    const validated = validate(field, value);
+
+    setState({ ...state, [field]: validated });
   }
 
   function handleCharListChange(index) {
     setState(() => {
-      state.options[index] = { ...state.options[index], selected: !state.options[index].selected };
-      const isAtLeastOneOptionSelected = state.options.some(option => option.selected);
+      state.options[index] = { ...options[index], selected: !options[index].selected };
+      const isAtLeastOneOptionSelected = options.some(option => option.selected);
       if (!isAtLeastOneOptionSelected) {
-        state.options[index] = { ...state.options[index], selected: true };
+        options[index] = { ...options[index], selected: true };
       }
 
       return { ...state };
