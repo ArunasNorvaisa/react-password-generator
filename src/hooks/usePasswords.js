@@ -33,23 +33,25 @@ function generateCharactersList(options) {
     })
 }
 
+function generatePasswordFromNumbersArray(array, characterList) {
+  let password = '';
+  for (const number of array) {
+    Functor()
+      // Calculating random integer in the range of 0-(charactersList.length-1)
+      // inspired by: https://stackoverflow.com/questions/1527803/
+      // (only we do not need Math.floor() as bitwise operator >> is used)
+      .map(() => number * characterList.length >> 16)
+      .out(randomIndex => password += characterList[randomIndex])
+  }
+
+  return password;
+}
+
 function generateSinglePassword(characterList, passwordLength) {
   return Functor()
     .map(() => new Uint16Array(passwordLength))
     .map(emptyNumbersArray => crypto.getRandomValues(emptyNumbersArray))
-    .out(randomNumbersArray => {
-      let password = '';
-      for (const number of randomNumbersArray) {
-        Functor()
-        // Calculating random integer in the range of 0-(charactersList.length-1)
-        // inspired by: https://stackoverflow.com/questions/1527803/
-        // (only we do not need Math.floor() as bitwise operator >> is used)
-          .map(() => number * characterList.length >> 16)
-          .out(randomIndex => password += characterList[randomIndex])
-      }
-
-      return password;
-    });
+    .out(randomNumbersArray => generatePasswordFromNumbersArray(randomNumbersArray, characterList));
 }
 
 export function handleClipboardCopy(event) {
@@ -65,7 +67,7 @@ export function handleClipboardCopy(event) {
 
   setTimeout(() => {
     notification.remove();
-  }, 1291);
+  }, 1791);
 }
 
 // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
