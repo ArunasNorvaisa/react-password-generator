@@ -7,6 +7,7 @@
     "start": "webpack serve --color --config webpack.dev.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
+    "build:azure": "webpack --config webpack.prod.js",
     "lint": "eslint src/**/*.{js,jsx} --color",
     "lint:fix": "eslint src/**/*.{js,jsx} --color --fix"
   },
