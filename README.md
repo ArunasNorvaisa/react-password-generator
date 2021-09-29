@@ -7,7 +7,7 @@
 ### Demo
 * https://arunas.org/react-pwd (Own hosting)
 * https://pwd.86.lt/ (Oracle cloud)
-* https://pwd.arunas.org/ (Azure cloud)
+* https://pwd2.arunas.org/ (Azure cloud)
 
 ### Usage:
 ```sh
