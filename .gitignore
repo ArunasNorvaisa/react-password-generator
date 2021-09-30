@@ -90,5 +90,6 @@ fabric.properties
 
 package-lock.json
 yarn.lock
+/.yarn
 /node_modules
 /build

@@ -5,8 +5,8 @@
 * 2.1.0
 
 ### Demo
-* https://arunas.org/react-pwd (Own hosting)
-* https://pwd.86.lt/ (Oracle cloud)
+* https://arunas.org/react-pwd (cPanel-based traditional hosting)
+* https://pwd.arunas.org/ (Oracle cloud)
 * https://pwd2.arunas.org/ (Azure cloud)
 
 ### Usage:

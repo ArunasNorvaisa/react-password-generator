@@ -1,5 +1,6 @@
 import React from 'react';
-import usePasswords, { MAX_NUMBER_OF_PASSWORDS, MAX_PASSWORD_LENGTH, MIN_NUMBER_OF_PASSWORDS, MIN_PASSWORD_LENGTH, handleClipboardCopy } from '../hooks/usePasswords';
+import usePasswords from '../hooks/usePasswords';
+import { MAX_NUMBER_OF_PASSWORDS, MAX_PASSWORD_LENGTH, MIN_NUMBER_OF_PASSWORDS, MIN_PASSWORD_LENGTH, handleClipboardCopy } from '../model/model';
 import * as styles from '../css/styles.scss';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
       }
       <tr>
         <td>
-          <div className={styles.description}>Password Length <span>(max: 255)</span></div>
+          <div className={styles.description}>Password Length <span>(max: {MAX_PASSWORD_LENGTH})</span></div>
         </td>
         <td>
           <input
@@ -44,7 +45,7 @@ function App() {
       </tr>
       <tr>
         <td>
-          <div className={styles.description}>Number of Passwords <span>(max: 199)</span></div>
+          <div className={styles.description}>Number of Passwords <span>(max: {MAX_NUMBER_OF_PASSWORDS})</span></div>
         </td>
         <td>
           <input
