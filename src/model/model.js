@@ -74,8 +74,6 @@ export function handleClipboardCopy(event) {
   }, 1791);
 }
 
-
-
 // Below function was shamelessly copied from https://stackoverflow.com/questions/45071353
 export function copyToClipboard(str) {
   const el = document.createElement('textarea'); // Create a <textarea> element
