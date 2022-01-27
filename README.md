@@ -6,8 +6,8 @@
 
 ### Demo
 * https://arunas.org/react-pwd (cPanel-based traditional hosting)
-* https://pwd.arunas.org/ (Oracle cloud)
-* https://pwd2.arunas.org/ (Azure cloud)
+* https://pwd.86.lt/ (Oracle cloud)
+* https://pwd2.86.lt/ (Azure cloud)
 
 ### Usage:
 ```sh
