@@ -7,14 +7,14 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "prettier",
     "prettier/react",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "prettier",
   ],
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": 0,
     "no-console": "error",
   },
   settings: {
