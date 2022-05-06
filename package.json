@@ -1,7 +1,7 @@
 {
   "name": "react-password-generator",
   "private": true,
-  "version": "2.1.2",
+  "version": "2.2.0",
   "license": "ISC",
   "scripts": {
     "start": "webpack serve --color --config webpack.dev.js",
@@ -9,7 +9,8 @@
     "build:prod": "webpack --config webpack.prod.js",
     "build:azure": "webpack --config webpack.prod.js",
     "lint": "eslint src/**/*.{js,jsx} --color",
-    "lint:fix": "eslint src/**/*.{js,jsx} --color --fix"
+    "lint:fix": "eslint src/**/*.{js,jsx} --color --fix",
+    "test": "jest"
   },
   "author": "Arunas Norvaisa",
   "devDependencies": {
@@ -17,6 +18,7 @@
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "babel-eslint": "10.1.0",
+    "babel-jest": "28.1.0",
     "babel-loader": "8.2.5",
     "clean-webpack-plugin": "4.0.0",
     "core-js": "3.22.2",
@@ -33,6 +35,8 @@
     "html-loader": "3.1.0",
     "html-webpack-plugin": "5.5.0",
     "i": "0.3.7",
+    "jest": "28.1.0",
+    "jest-environment-jsdom": "28.1.0",
     "mini-css-extract-plugin": "2.6.0",
     "prettier": "2.6.2",
     "sass": "1.51.0",
