@@ -6,26 +6,26 @@ const initialState = {
     {
       name: 'Lowercase characters',
       characters: 'abcdefghijklmnopqrstuvwxyz',
-      selected: true
+      selected: true,
     },
     {
       name: 'Uppercase characters',
       characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      selected: true
+      selected: true,
     },
     {
       name: 'Symbols',
-      characters: '!@#$%^&*()_-+=|{}[]].,;:?\\/\"<>\'',
-      selected: true
+      characters: '!@#$%^&*()_-+=|{}[]].,;:?\\/"<>\'',
+      selected: true,
     },
     {
       name: 'Digits',
       characters: '0123456789',
-      selected: true
-    }
+      selected: true,
+    },
   ],
   passwordLength: 30,
-  numberOfPasswords: 11
+  numberOfPasswords: 11,
 };
 
 const usePasswords = () => {
@@ -41,8 +41,13 @@ const usePasswords = () => {
 
   function handleCharListChange(index) {
     setState(prevState => {
-      prevState.options[index] = { ...prevState.options[index], selected: !prevState.options[index].selected };
-      const isAtLeastOneOptionSelected = prevState.options.some(option => option.selected);
+      prevState.options[index] = {
+        ...prevState.options[index],
+        selected: !prevState.options[index].selected,
+      };
+      const isAtLeastOneOptionSelected = prevState.options.some(
+        option => option.selected
+      );
       if (!isAtLeastOneOptionSelected) {
         options[index] = { ...options[index], selected: true };
       }
@@ -55,9 +60,8 @@ const usePasswords = () => {
     state,
     pwdArray,
     change,
-    handleCharListChange
+    handleCharListChange,
   };
 };
 
 export default usePasswords;
-

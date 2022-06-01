@@ -1,12 +1,19 @@
-import {copyToClipboard, generateCharactersList, generatePassword, validate} from './model';
+import {
+  copyToClipboard,
+  generateCharactersList,
+  generatePassword,
+  validate,
+} from './model';
 
 describe('generateCharactersList()', () => {
   test('returns selected characters', () => {
-    expect(generateCharactersList([
-      { selected: true, characters: 'abcd' },
-      { selected: false, characters: '1234' },
-      { selected: true, characters: 'efgh' }
-    ])).toEqual('abcdefgh');
+    expect(
+      generateCharactersList([
+        { selected: true, characters: 'abcd' },
+        { selected: false, characters: '1234' },
+        { selected: true, characters: 'efgh' },
+      ])
+    ).toEqual('abcdefgh');
   });
 });
 
@@ -15,18 +22,21 @@ describe('generatePassword()', () => {
     [
       Uint16Array.of(0, 1, 100, 1000, 10000, 32767, 32768, 51234, 65535),
       'ab',
-      'aaaaaabbb'
+      'aaaaaabbb',
     ],
     [
       Uint16Array.of(0, 1, 100, 1000, 2521, 5041, 5042, 65535),
       'abcdefghijklmnopqrstuvwxyz',
-      'aaaabbcz'
-    ]
+      'aaaabbcz',
+    ],
   ];
 
-  test.each(testCases)('given (%p, %p) returns %p', (randomNumbers, characters, expected) => {
-    expect(generatePassword(randomNumbers, characters)).toEqual(expected);
-  });
+  test.each(testCases)(
+    'given (%p, %p) returns %p',
+    (randomNumbers, characters, expected) => {
+      expect(generatePassword(randomNumbers, characters)).toEqual(expected);
+    }
+  );
 });
 
 describe('validate()', () => {
@@ -47,18 +57,24 @@ describe('validate()', () => {
     ['fieldDoesNotExist', 5000, 5000],
   ];
 
-  test.each(testCases)('given (%p, %p) returns %p', (field, value, expected) => {
-    expect(validate(field, value)).toEqual(expected);
-  });
+  test.each(testCases)(
+    'given (%p, %p) returns %p',
+    (field, value, expected) => {
+      expect(validate(field, value)).toEqual(expected);
+    }
+  );
 });
 
 describe('copyToClipboard', () => {
   const testCases = ['copied text', 'another text'];
 
-  test.each(testCases)('given %p copies the given string', (text) => {
+  test.each(testCases)('given %p copies the given string', text => {
     document.execCommand = jest.fn(() => {
       const textarea = document.getElementsByTagName('textarea')[0];
-      const selection = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+      const selection = textarea.value.substring(
+        textarea.selectionStart,
+        textarea.selectionEnd
+      );
       expect(selection).toEqual(text);
     });
 
