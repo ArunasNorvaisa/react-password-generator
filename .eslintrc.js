@@ -1,25 +1,22 @@
 module.exports = {
-  parser: "babel-eslint",
+  parser: '@babel/eslint-parser',
   env: {
     browser: true,
     es2021: true,
     node: true,
   },
   extends: [
-    "eslint:recommended",
-    "prettier/react",
-    "plugin:jsx-a11y/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier",
+    'eslint:recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
   ],
   rules: {
-    "prettier/prettier": 0,
-    "no-console": "error",
+    'no-console': 'error',
   },
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
   },
   parserOptions: {
@@ -27,7 +24,7 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["react", "prettier"],
+  plugins: ['react', 'jsx-a11y'],
 };
