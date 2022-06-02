@@ -48,7 +48,7 @@ function App() {
                 min={MIN_PASSWORD_LENGTH}
                 max={MAX_PASSWORD_LENGTH}
                 value={passwordLength}
-                onChange={e => change('passwordLength', e.target.value)}
+                onChange={(e) => change('passwordLength', e.target.value)}
               />
             </td>
           </tr>
@@ -65,14 +65,14 @@ function App() {
                 min={MIN_NUMBER_OF_PASSWORDS}
                 max={MAX_NUMBER_OF_PASSWORDS}
                 value={numberOfPasswords}
-                onChange={e => change('numberOfPasswords', e.target.value)}
+                onChange={(e) => change('numberOfPasswords', e.target.value)}
               />
             </td>
           </tr>
         </tbody>
       </table>
       <h1>Generated passwords</h1>
-      <h3>Please left-click on text to get it copied</h3>
+      <h3>Please click on text to copy it to clipboard</h3>
       <div className={styles.generatedPasswords} id="notification">
         {pwdArray.map((value, index) => {
           return (

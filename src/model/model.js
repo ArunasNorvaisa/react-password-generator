@@ -58,11 +58,14 @@ export function generateSinglePassword(characterList, passwordLength) {
     );
 }
 
-export function handleClipboardCopy(event) {
+export async function handleClipboardCopy(event) {
   const id = event.target.id;
   const container = document.getElementById(id);
-  const text = container.innerText;
-  copyToClipboard(text);
+  try {
+    await navigator.clipboard.writeText(container.innerText);
+  } catch (err) {
+    alert('Copy to clipboard unsuccessful');
+  }
 
   const notification = document.createElement('div');
   notification.classList.add(`${styles.red}`);
@@ -72,10 +75,6 @@ export function handleClipboardCopy(event) {
   setTimeout(() => {
     notification.remove();
   }, 1791);
-}
-
-export function copyToClipboard(str) {
-  navigator.clipboard.writeText(str);
 }
 
 export function validate(field, value) {
