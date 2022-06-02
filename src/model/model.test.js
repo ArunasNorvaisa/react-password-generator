@@ -1,9 +1,4 @@
-import {
-  copyToClipboard,
-  generateCharactersList,
-  generatePassword,
-  validate,
-} from './model';
+import { generateCharactersList, generatePassword, validate } from './model';
 
 describe('generateCharactersList()', () => {
   test('returns selected characters', () => {
@@ -63,23 +58,4 @@ describe('validate()', () => {
       expect(validate(field, value)).toEqual(expected);
     }
   );
-});
-
-describe('copyToClipboard', () => {
-  const testCases = ['copied text', 'another text'];
-
-  test.each(testCases)('given %p copies the given string', text => {
-    document.execCommand = jest.fn(() => {
-      const textarea = document.getElementsByTagName('textarea')[0];
-      const selection = textarea.value.substring(
-        textarea.selectionStart,
-        textarea.selectionEnd
-      );
-      expect(selection).toEqual(text);
-    });
-
-    copyToClipboard(text);
-    expect(document.execCommand).toBeCalledWith('copy');
-    expect(document.body.innerHTML).toEqual('');
-  });
 });

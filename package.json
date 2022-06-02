@@ -1,7 +1,7 @@
 {
   "name": "react-password-generator",
   "private": true,
-  "version": "2.2.1",
+  "version": "2.3.0",
   "license": "ISC",
   "scripts": {
     "start": "webpack serve --color --config webpack.dev.js",
