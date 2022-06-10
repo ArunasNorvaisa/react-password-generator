@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { renderPasswords, validate } from '../model/model';
+import { adjustAt, renderPasswords, validate } from '../model/model';
 
 const initialState = {
   options: [
@@ -40,20 +40,27 @@ const usePasswords = () => {
   }
 
   function handleCharListChange(index) {
-    setState(prevState => {
-      prevState.options[index] = {
-        ...prevState.options[index],
-        selected: !prevState.options[index].selected,
-      };
-      const isAtLeastOneOptionSelected = prevState.options.some(
-        option => option.selected
-      );
-      if (!isAtLeastOneOptionSelected) {
-        options[index] = { ...options[index], selected: true };
-      }
-
-      return { ...state };
-    });
+    if (state.options.filter((x) => x.selected).length === 1) {
+      setState(function (prevState) {
+        return {
+          ...prevState,
+          options: adjustAt(prevState.options, index, (x) => ({
+            ...x,
+            selected: true,
+          })),
+        };
+      });
+    } else {
+      setState(function (prevState) {
+        return {
+          ...prevState,
+          options: adjustAt(prevState.options, index, (x) => ({
+            ...x,
+            selected: !x.selected,
+          })),
+        };
+      });
+    }
   }
 
   return {

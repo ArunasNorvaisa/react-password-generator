@@ -98,3 +98,11 @@ export function validate(field, value) {
       return number;
   }
 }
+
+export function adjustAt(items, index, adjuster) {
+  return [
+    ...items.slice(0, index),
+    adjuster(items[index]),
+    ...items.slice(index + 1),
+  ];
+}
