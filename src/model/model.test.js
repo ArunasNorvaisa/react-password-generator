@@ -1,4 +1,9 @@
-import { generateCharactersList, generatePassword, validate } from './model';
+import {
+  generateCharactersList,
+  generatePassword,
+  validate,
+  adjustAt,
+} from './model';
 
 describe('generateCharactersList()', () => {
   test('returns selected characters', () => {
@@ -56,6 +61,27 @@ describe('validate()', () => {
     'given (%p, %p) returns %p',
     (field, value, expected) => {
       expect(validate(field, value)).toEqual(expected);
+    }
+  );
+});
+
+describe('adjustAt()', () => {
+  const testCases = [
+    [[1, 2, 3], 0, (x) => x * 2, [2, 2, 3]],
+    [[4, 8, 12], 2, (x) => x ** 2, [4, 8, 144]],
+    [['a', 'b', 'c'], 2, (x) => x + 2, ['a', 'b', 'c2']],
+    [
+      ['Albertas', 'Arūnas', 'Rasa'],
+      0,
+      (x) => 'Hello, ' + x,
+      ['Hello, Albertas', 'Arūnas', 'Rasa'],
+    ],
+  ];
+
+  test.each(testCases)(
+    'given (%p, %p, %p) returns %p',
+    (items, index, adjuster, expected) => {
+      expect(adjustAt(items, index, adjuster)).toStrictEqual(expected);
     }
   );
 });
