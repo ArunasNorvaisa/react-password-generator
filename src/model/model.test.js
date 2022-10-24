@@ -20,9 +20,9 @@ describe('generateCharactersList()', () => {
 describe('generatePassword()', () => {
   const testCases = [
     [
-      Uint16Array.of(0, 1, 100, 1000, 10000, 32767, 32768, 51234, 65535),
+      Uint16Array.of(0, 1, 51233, 1000, 10000, 32767, 32768, 51234, 65535),
       'ab',
-      'aaaaaabbb',
+      'aabaaabbb',
     ],
     [
       Uint16Array.of(0, 1, 100, 1000, 2521, 5041, 5042, 65535),
