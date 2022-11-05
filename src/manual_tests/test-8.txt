@@ -1,0 +1,8 @@
+1. Go to https://pwd.86.lt
+   Expected result: successful load
+
+2. Click on any of the passwords that are pre-generated
+   Expected result: a "COPIED!!!" notification flashes for about 1.5s
+
+3. Check the contents of the clipboard
+   Expected result: clipboard contents is identical with the password copied

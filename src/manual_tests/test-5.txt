@@ -1,0 +1,5 @@
+1. Go to https://pwd.86.lt
+   Expected result: successful load
+
+2. Uncheck "Lowercase characters", "Uppercase characters", "Symbols" and try to uncheck "Digits" radio button
+   Expected result: "Digits" radio button can't be unchecked, generated passwords contain only digits

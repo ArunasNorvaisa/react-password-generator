@@ -1,0 +1,5 @@
+1. Go to https://pwd.86.lt
+   Expected result: successful load
+
+2. Enter "300" as the number of passwords to be generated
+   Expected result: only 199 passwords will be generated

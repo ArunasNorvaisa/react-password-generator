@@ -1,0 +1,5 @@
+1. Go to https://pwd.86.lt
+   Expected result: successful load
+
+2. Uncheck "Digits" radio button
+   Expected result: generated passwords do not contain digits
