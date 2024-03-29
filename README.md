@@ -2,7 +2,7 @@
 * An attempt to create a secure password generator in React.
 
 ### Version
-* 2.3.1
+* 2.3.2
 
 ### Demo
 * https://arunas.org/react-pwd (cPanel-based traditional hosting)
